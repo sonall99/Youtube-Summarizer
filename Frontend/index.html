@@ -113,12 +113,12 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: filter 0.3s ease;
             position: relative;
         }
 
         .planet:hover {
-            transform: scale(1.3);
+            filter: brightness(1.3);
         }
 
         .planet-label {
@@ -132,6 +132,7 @@
             white-space: nowrap;
             opacity: 0;
             transition: opacity 0.3s ease;
+            pointer-events: none;
         }
 
         .planet:hover .planet-label {
@@ -173,9 +174,7 @@
         .orbit-2 { animation: orbit-2 25s linear infinite; }
         .orbit-3 { animation: orbit-3 30s linear infinite; }
 
-        .orbit-1:hover { animation: orbit-slow-1 40s linear infinite; }
-        .orbit-2:hover { animation: orbit-slow-2 50s linear infinite; }
-        .orbit-3:hover { animation: orbit-slow-3 60s linear infinite; }
+        .planet-orbit:hover { animation-play-state: paused; }
 
         /* Planet Colors */
         .planet-ai {
@@ -215,6 +214,160 @@
             min-height: 100vh;
         }
 
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .orbit-container {
+                width: 500px;
+                height: 500px;
+            }
+
+            .orbit-ring-1 { width: 300px; height: 300px; }
+            .orbit-ring-2 { width: 400px; height: 400px; }
+            .orbit-ring-3 { width: 500px; height: 500px; }
+
+            @keyframes orbit-1 {
+                from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-2 {
+                from { transform: rotate(0deg) translateX(200px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(200px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-3 {
+                from { transform: rotate(0deg) translateX(250px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(250px) rotate(-360deg); }
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                font-size: 14px;
+            }
+
+            .time-saved-widget {
+                top: 10px;
+                right: 10px;
+                padding: 10px 15px;
+            }
+
+            .orbit-container {
+                width: 400px;
+                height: 400px;
+            }
+
+            .sun {
+                width: 100px;
+                height: 100px;
+            }
+
+            .sun svg {
+                width: 60px !important;
+                height: 60px !important;
+            }
+
+            .planet {
+                width: 70px;
+                height: 70px;
+            }
+
+            .planet-orbit {
+                margin: -35px 0 0 -35px;
+                width: 70px;
+                height: 70px;
+            }
+
+            .planet div:first-child {
+                font-size: 28px !important;
+            }
+
+            .orbit-ring-1 { width: 220px; height: 220px; }
+            .orbit-ring-2 { width: 300px; height: 300px; }
+            .orbit-ring-3 { width: 380px; height: 380px; }
+
+            @keyframes orbit-1 {
+                from { transform: rotate(0deg) translateX(110px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(110px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-2 {
+                from { transform: rotate(0deg) translateX(150px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(150px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-3 {
+                from { transform: rotate(0deg) translateX(190px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(190px) rotate(-360deg); }
+            }
+
+            .scroll-section > div {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+                padding: 40px 20px !important;
+            }
+
+            .orbit-container {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .orbit-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .sun {
+                width: 80px;
+                height: 80px;
+            }
+
+            .sun svg {
+                width: 50px !important;
+                height: 50px !important;
+            }
+
+            .planet {
+                width: 60px;
+                height: 60px;
+            }
+
+            .planet-orbit {
+                margin: -30px 0 0 -30px;
+                width: 60px;
+                height: 60px;
+            }
+
+            .planet div:first-child {
+                font-size: 24px !important;
+            }
+
+            .planet-label {
+                font-size: 11px;
+                bottom: -25px;
+            }
+
+            .orbit-ring-1 { width: 160px; height: 160px; }
+            .orbit-ring-2 { width: 220px; height: 220px; }
+            .orbit-ring-3 { width: 280px; height: 280px; }
+
+            @keyframes orbit-1 {
+                from { transform: rotate(0deg) translateX(80px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(80px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-2 {
+                from { transform: rotate(0deg) translateX(110px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(110px) rotate(-360deg); }
+            }
+
+            @keyframes orbit-3 {
+                from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+                to { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+            }
+        }
+
         .scroll-container::-webkit-scrollbar {
             width: 0px;
         }
@@ -251,39 +404,39 @@
     <div class="scroll-container">
         <!-- Hero Section -->
         <section class="scroll-section flex items-center justify-center relative">
-            <div style="max-width: 1400px; width: 100%; padding: 0 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
+            <div style="max-width: 1400px; width: 100%; padding: 0 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
                 
                 <!-- Left Side - Text Content -->
                 <div style="z-index: 10;">
-                    <h1 style="font-size: 72px; font-weight: 900; color: white; margin-bottom: 30px; line-height: 1.1;">
+                    <h1 style="font-size: clamp(40px, 6vw, 72px); font-weight: 900; color: white; margin-bottom: 30px; line-height: 1.1;">
                         YouTube Video<br/>Summarizer
                     </h1>
-                    <p style="font-size: 24px; color: #94A3B8; margin-bottom: 40px; line-height: 1.6;">
+                    <p style="font-size: clamp(16px, 2vw, 24px); color: #94A3B8; margin-bottom: 40px; line-height: 1.6;">
                         Transform any YouTube video into concise, AI-powered summaries in seconds. Save time, boost productivity, and never miss key insights again.
                     </p>
                     
-                    <div style="display: flex; gap: 20px; margin-bottom: 50px;">
-                        <button onclick="scrollToSection('features')" style="background: #FF0000; color: white; padding: 18px 36px; border-radius: 50px; font-weight: bold; font-size: 18px; border: none; cursor: pointer; box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); transition: all 0.3s ease;">
+                    <div style="display: flex; gap: 15px; margin-bottom: 50px; flex-wrap: wrap;">
+                        <button onclick="scrollToSection('features')" style="background: #FF0000; color: white; padding: clamp(14px, 2vw, 18px) clamp(24px, 3vw, 36px); border-radius: 50px; font-weight: bold; font-size: clamp(14px, 1.5vw, 18px); border: none; cursor: pointer; box-shadow: 0 0 30px rgba(255, 0, 0, 0.4); transition: all 0.3s ease;">
                             🚀 Get Started Free
                         </button>
-                        <button onclick="scrollToSection('summarize')" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: 18px 36px; border-radius: 50px; font-weight: bold; font-size: 18px; cursor: pointer; transition: all 0.3s ease;">
+                        <button onclick="scrollToSection('summarize')" style="background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.2); color: white; padding: clamp(14px, 2vw, 18px) clamp(24px, 3vw, 36px); border-radius: 50px; font-weight: bold; font-size: clamp(14px, 1.5vw, 18px); cursor: pointer; transition: all 0.3s ease;">
                             ✨ Try It Now
                         </button>
                     </div>
 
                     <!-- Stats -->
-                    <div style="display: flex; gap: 40px;">
+                    <div style="display: flex; gap: clamp(20px, 4vw, 40px); flex-wrap: wrap;">
                         <div>
-                            <div style="font-size: 36px; font-weight: 900; color: #FF0000;">1M+</div>
-                            <div style="color: #64748B; font-size: 14px;">Videos Summarized</div>
+                            <div style="font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #FF0000;">1M+</div>
+                            <div style="color: #64748B; font-size: clamp(12px, 1.2vw, 14px);">Videos Summarized</div>
                         </div>
                         <div>
-                            <div style="font-size: 36px; font-weight: 900; color: #8A2BE2;">500K+</div>
-                            <div style="color: #64748B; font-size: 14px;">Happy Users</div>
+                            <div style="font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #8A2BE2;">500K+</div>
+                            <div style="color: #64748B; font-size: clamp(12px, 1.2vw, 14px);">Happy Users</div>
                         </div>
                         <div>
-                            <div style="font-size: 36px; font-weight: 900; color: #10B981;">95%</div>
-                            <div style="color: #64748B; font-size: 14px;">Time Saved</div>
+                            <div style="font-size: clamp(24px, 3vw, 36px); font-weight: 900; color: #10B981;">95%</div>
+                            <div style="color: #64748B; font-size: clamp(12px, 1.2vw, 14px);">Time Saved</div>
                         </div>
                     </div>
                 </div>
@@ -349,47 +502,47 @@
 
         <!-- Features Section -->
         <section id="features" class="scroll-section flex items-center justify-center">
-            <div style="max-width: 1200px; padding: 0 60px;">
-                <div style="text-align: center; margin-bottom: 80px;">
-                    <h2 style="font-size: 56px; font-weight: 900; color: white; margin-bottom: 20px;">Why Choose Our Summarizer?</h2>
-                    <p style="font-size: 20px; color: #94A3B8;">Powerful features that make learning effortless</p>
+            <div style="max-width: 1200px; padding: 0 40px; width: 100%;">
+                <div style="text-align: center; margin-bottom: 60px;">
+                    <h2 style="font-size: clamp(36px, 5vw, 56px); font-weight: 900; color: white; margin-bottom: 20px;">Why Choose Our Summarizer?</h2>
+                    <p style="font-size: clamp(16px, 2vw, 20px); color: #94A3B8;">Powerful features that make learning effortless</p>
                 </div>
 
-                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px;">
-                    <div style="background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">🧠</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">AI-Powered Intelligence</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">Advanced language models extract key insights with remarkable accuracy</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
+                    <div style="background: rgba(138, 43, 226, 0.1); border: 1px solid rgba(138, 43, 226, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">🧠</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">AI-Powered Intelligence</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">Advanced language models extract key insights with remarkable accuracy</p>
                     </div>
 
-                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">⚡</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">Lightning Fast</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">Get comprehensive summaries in under 30 seconds, every time</p>
+                    <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">⚡</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">Lightning Fast</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">Get comprehensive summaries in under 30 seconds, every time</p>
                     </div>
 
-                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">🎯</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">Highly Accurate</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">99% accuracy rate in capturing the most important information</p>
+                    <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">🎯</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">Highly Accurate</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">99% accuracy rate in capturing the most important information</p>
                     </div>
 
-                    <div style="background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">🆓</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">Free Forever</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">No credit card required, no hidden fees, completely free to use</p>
+                    <div style="background: rgba(250, 204, 21, 0.1); border: 1px solid rgba(250, 204, 21, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">🆓</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">Free Forever</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">No credit card required, no hidden fees, completely free to use</p>
                     </div>
 
-                    <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">💡</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">Smart Analysis</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">Identifies themes, key points, and actionable insights automatically</p>
+                    <div style="background: rgba(236, 72, 153, 0.1); border: 1px solid rgba(236, 72, 153, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">💡</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">Smart Analysis</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">Identifies themes, key points, and actionable insights automatically</p>
                     </div>
 
-                    <div style="background: rgba(234, 88, 12, 0.1); border: 1px solid rgba(234, 88, 12, 0.3); border-radius: 24px; padding: 40px; text-align: center; transition: all 0.3s ease;">
-                        <div style="font-size: 56px; margin-bottom: 20px;">🔒</div>
-                        <h3 style="font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px;">Private & Secure</h3>
-                        <p style="color: #94A3B8; line-height: 1.6;">Your data stays private, we never store your video information</p>
+                    <div style="background: rgba(234, 88, 12, 0.1); border: 1px solid rgba(234, 88, 12, 0.3); border-radius: 24px; padding: 30px; text-align: center; transition: all 0.3s ease;">
+                        <div style="font-size: clamp(40px, 5vw, 56px); margin-bottom: 15px;">🔒</div>
+                        <h3 style="font-size: clamp(18px, 2vw, 24px); font-weight: bold; color: white; margin-bottom: 15px;">Private & Secure</h3>
+                        <p style="color: #94A3B8; line-height: 1.6; font-size: clamp(14px, 1.5vw, 16px);">Your data stays private, we never store your video information</p>
                     </div>
                 </div>
             </div>
@@ -397,13 +550,13 @@
 
         <!-- Summarizer Section -->
         <section id="summarize" class="scroll-section flex items-center justify-center">
-            <div style="max-width: 900px; width: 100%; padding: 0 60px;">
-                <div style="text-align: center; margin-bottom: 60px;">
-                    <h2 style="font-size: 64px; font-weight: 900; color: white; margin-bottom: 20px;">Generate Summary Now 🚀</h2>
-                    <p style="font-size: 24px; color: #94A3B8;">Paste your YouTube URL and experience the magic</p>
+            <div style="max-width: 900px; width: 100%; padding: 0 40px;">
+                <div style="text-align: center; margin-bottom: 40px;">
+                    <h2 style="font-size: clamp(40px, 6vw, 64px); font-weight: 900; color: white; margin-bottom: 20px;">Generate Summary Now 🚀</h2>
+                    <p style="font-size: clamp(16px, 2vw, 24px); color: #94A3B8;">Paste your YouTube URL and experience the magic</p>
                 </div>
 
-                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; padding: 60px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">
+                <div style="background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 30px; padding: clamp(30px, 5vw, 60px); box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">
                     <form id="summarize-form">
                         <div style="margin-bottom: 30px;">
                             <label style="display: block; color: white; font-weight: bold; margin-bottom: 15px; font-size: 18px;">YouTube Video URL</label>
@@ -495,7 +648,7 @@
             summaryText.textContent = '';
 
             try {
-                const response = await fetch('http://127.0.0.1:8000/summarize', {
+                const response = await fetch('https://youtube-summarizer-1-8njy.onrender.com/summarize', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ video_url: videoUrl })
