@@ -23,7 +23,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-model = genai.GenerativeModel("gemini-2.5-pro")
+model = genai.GenerativeModel("models/gemini-2.5-flash")
 
 def get_video_id_from_url(video_url: str) -> str | None:
     try:
